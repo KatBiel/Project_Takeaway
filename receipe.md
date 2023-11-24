@@ -59,19 +59,19 @@ class Menu:
 
     def add(self, dish):
         # Parameters:
-        #   dish: an instance of Dishes
+        #   dish: an instance of Dish
         # Side-effects:
         #   Adds the dish to the dishes property of the self object
         # Returns nothing
         pass 
 
-    def all_list_of_dishes(self):
+    def list_of_all_dishes(self):
         # Returns:
         #   A list of the Dishes instances
         pass 
 
 
-class Dishes():
+class Dish():
     # User-facin (Public) properties:
     #   name: string representing a name of a dish
     #   price: a float representing the price of a dish
@@ -87,24 +87,37 @@ class Dishes():
 class Order():
     def __init__(self, menu):
         # side effect: initialises an empty list
+        # menu: a string, an instance of Menu
         # returns: nothing
-        # 
-        # selected_dishes = []
+        # self.menu = menu
+        # self.order_list = []
+        pass
 
-    def add(self, dish_name, quantity):
-        # dish_name: string, an instance of Dishes, 
-        #    representing a dish selected by the user
+    def add(self, dish, quantity):
+        # dish: string, an instance of Dish, 
+        #    representing a dish name selected by the user
         # quantity: int representing a number of dishes selected
+        # Consider adding validation to check whether the provided dish name exists in the menu before adding it to the order.
+        #Raises: ValueError if the provided dish name does not exist in the menu.
+        pass
+
+    def all_selected(self):
+        #returns: A list of dictionaries with keys 'dish_name', 'quantity', and 'price'.
+        pass
 
     def generate_receipt(self):
-        # returns:
-        # a list of selected dish_names with selected quantity and price (quantity * price)
-        # a grand total:
-        # Total = a float, representing a sum of all dishes prices 
-        # a string:
-        #'Order Total': n£
+        #returns:
+        # a dictionary with keys 'order_details' (list of selected dishes with details)
+        # and 'total' (grand total price).
+        pass
 
-
+# {
+#     'order_details': [
+#         {'dish_name': 'Pizza'', 'quantity': 1, 'price': 12.50},
+#         {'dish_name': 'Lasagne', 'quantity': 2, 'price': 21.80}
+#     ],
+#     'total': £34.30
+# }
 
 ```
 
@@ -116,17 +129,69 @@ combinations that reflect the ways in which the system will be used._
 ```python
 # EXAMPLE
 
+
+
 """
-Given a library
-When we add two tracks
-We see those tracks reflected in the tracks list
+class Diary: When we add multiple dishes entries, list_of_all_dishes lists them out
 """
-library = MusicLibrary()
-track_1 = Track("Carte Blanche", "Veracocha")
-track_2 = Track("Synaesthesia", "The Thrillseekers")
-library.add(track_1)
-library.add(track_2)
-library.tracks # => [track_1, track_2]
+def test_list_of_all_dishes():
+    menu = Menu()
+    dish_1 = Dish('Pizza' '12.50')
+    dish_2 = Dish('Lasagne' '10.90')
+    dish_3 = Dish('Spaghetti' '9.50')
+    self.dishes.add(dish_1)
+    self.dishes.add(dish_2)
+    self.dishes.add(dish_2)
+    assert menu.list_of_all_dishes() == [dish_1, dish_2, dish_3]
+
+"""
+class Order: When added multiple dishes to order list, all_selected() returns list of dictionaries with keys 'dish_name', 'quantity', and 'price'.
+"""
+def test_order_list():
+    order = Order()
+    dish_1 = Dish('Pizza' '12.50')
+    dish_2 = Dish('Lasagne' '10.90')
+    self.order_list.add(dish_1, 1)
+    self.order_list.add(dish_2, 2)
+    assert order.order_list() == [(dish_1, 1), (dish_2, 2)]
+
+"""
+class Order: When adding dish that does not exist, raises an error
+"""
+def test_add_non_existing_dish():
+    with pytest.rasises(Exception) as e:
+        order.add()
+    error_message = str(e.value)
+    assert error_ message == 'Dish not available!'
+
+"""
+class Order: When adding empty sting raises an error
+"""
+def test_add_non_existing_dish():
+    with pytest.rasises(Exception) as e:
+        order.add('')
+    error_message = str(e.value)
+    assert error_ message == 'Empty entry!'
+
+"""
+class Order: When added multiple dishes to order list, generate_receipt() returns a dictionary
+with keys 'order_details' (list of selected dishes with details)
+and 'total' (grand total price).
+"""
+def test_generate_receipt():
+    order = Order()
+    dish_1 = Dish('Pizza' '12.50')
+    dish_2 = Dish('Lasagne' '10.90')
+    self.order_list.add(dish_1, 1)
+    self.order_list.add(dish_2, 2)
+    assert order.generate_receipt() == {
+    'order_details': [
+        {'dish_name': 'Pizza', 'quantity': '1', 'price': '12.50'},
+        {'dish_name': 'Lasagne', 'quantity': '2', 'price': '21.80'}
+    ],
+    'total': £34.30
+}
+
 ```
 
 ## 4. Create Examples as Unit Tests
