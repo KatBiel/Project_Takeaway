@@ -98,7 +98,7 @@ class Order():
         #    representing a dish name selected by the user
         # quantity: int representing a number of dishes selected
         # Consider adding validation to check whether the provided dish name exists in the menu before adding it to the order.
-        #Raises: ValueError if the provided dish name does not exist in the menu.
+        #Raises: Error if the provided dish name does not exist in the menu.
         pass
 
     def all_selected(self):

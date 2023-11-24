@@ -24,16 +24,11 @@ def test_order_list():
     #[{dish_1: 1, dish_2: 2}]
 
 
-    def test_add_non_existing_dish():
-        with pytest.rasises(Exception) as e:
-            order.add()
-        error_message = str(e.value)
-        assert error_message == "Dish not available!D"
+def test_add_non_existing_dish():
+    menu = Menu()
+    order = Order(menu)
+    with pytest.raises(Exception) as e:
+        order.add(Dish('Burger', '8.90'), 1)
+    error_message = str(e.value)
+    assert error_message == "Dish not available"
 
-
-
-# def test_add_empty_entry():
-#     with pytest.rasises(Exception) as e:
-#         order.add('')
-#     error_message = str(e.value)
-#     assert error_ message == 'Empty entry!'

@@ -4,21 +4,32 @@ class Order():
         self.order_list = []
 
     def add(self, dish, quantity):
+        price = float(dish.price)
         dish_name = dish.name
         item_found = False
         for menu_dish in self.menu.dishes:
             if menu_dish.name == dish_name:
                 item_found = True
-            else: 
-                raise Exception(f"Dish not available")
-
-        # self.order_list.append((dish, quantity))
-        price = float(dish.price)
+                break
+        if not item_found:
+            raise Exception("Dish not available")
+        
         self.order_list.append({'dish': dish, 'quantity': quantity, 'price': price * quantity} )
+        # self.order_list.append((dish, quantity))
 
-
-        # Consider adding validation to check whether the provided dish name exists in the menu before adding it to the order.
-        #Raises: ValueError if the provided dish name does not exist in the menu.
+    # def add(self, dish, quantity):
+    #     price = float(dish.price)
+    #     dish_name = dish.name
+    #     item_found = False
+    #     for item in self.menu.dishes:
+    #         if item.name == dish_name:
+    #             item_found = True
+    #             break
+    #     else: 
+    #         raise Exception("Dish not available")
+        
+    #     self.order_list.append({'dish': dish, 'quantity': quantity, 'price': price * quantity} )
+        # self.order_list.append((dish, quantity))
 
     def all_selected(self):
         return self.order_list
