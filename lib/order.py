@@ -5,31 +5,18 @@ class Order():
 
     def add(self, dish, quantity):
         price = float(dish.price)
-        dish_name = dish.name
         item_found = False
-        for menu_dish in self.menu.dishes:
-            if menu_dish.name == dish_name:
+        for item in self.menu.dishes:
+            if item.name == dish.name:
                 item_found = True
                 break
+
         if not item_found:
             raise Exception("Dish not available")
-        
+            
         self.order_list.append({'dish': dish, 'quantity': quantity, 'price': price * quantity} )
         # self.order_list.append((dish, quantity))
 
-    # def add(self, dish, quantity):
-    #     price = float(dish.price)
-    #     dish_name = dish.name
-    #     item_found = False
-    #     for item in self.menu.dishes:
-    #         if item.name == dish_name:
-    #             item_found = True
-    #             break
-    #     else: 
-    #         raise Exception("Dish not available")
-        
-    #     self.order_list.append({'dish': dish, 'quantity': quantity, 'price': price * quantity} )
-        # self.order_list.append((dish, quantity))
 
     def all_selected(self):
         return self.order_list

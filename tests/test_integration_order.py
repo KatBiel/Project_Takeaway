@@ -14,14 +14,15 @@ def test_order_list():
     order = Order(menu)
     dish_1 = Dish('Pizza', '12.50')
     dish_2 = Dish('Lasagne', '10.90')
+    menu.add(dish_1)
+    menu.add(dish_2)
     order.add(dish_1, 1)
     order.add(dish_2, 2)
-    # assert order.all_selected() == [(dish_1, 1), (dish_2, 2)]
     assert order.all_selected() == [
         {'dish': dish_1, 'quantity': 1, 'price': 12.50},
         {'dish': dish_2, 'quantity': 2, 'price': 21.80}
     ]
-    #[{dish_1: 1, dish_2: 2}]
+    # assert order.all_selected() == [(dish_1, 1), (dish_2, 2)]
 
 
 def test_add_non_existing_dish():
