@@ -14,7 +14,7 @@ class Order():
         if not item_found:
             raise Exception("Dish not available")
             
-        self.order_list.append({'dish': dish, 'quantity': quantity, 'price': price * quantity} )
+        self.order_list.append({'dish': dish, 'quantity': quantity, 'price': price } )
         # self.order_list.append((dish, quantity))
 
 
@@ -22,7 +22,8 @@ class Order():
         return self.order_list
 
     def generate_receipt(self):
-        #returns:
-        # a dictionary with keys 'order_details' (list of selected dishes with details)
-        # and 'total' (grand total price).
-        pass
+        receipt = "\n".join([f"{item['dish'].name}: {item['quantity']} x £{float(item['dish'].price):.2f}"
+                            for item in self.order_list])
+        total = sum(float(item['dish'].price) * item['quantity'] for item in self.order_list)
+        receipt += f"\n\nGrand Total: £{total:.2f}"
+        return receipt

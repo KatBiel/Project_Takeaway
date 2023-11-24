@@ -186,13 +186,6 @@ def test_add_non_existing_dish():
     assert error_ message == 'Dish not available!'
 
 
-
-def test_add_empty_entry():
-    with pytest.rasises(Exception) as e:
-        order.add('')
-    error_message = str(e.value)
-    assert error_ message == 'Empty entry!'
-
 """
 class Order: When added multiple dishes to order list, generate_receipt() returns a dictionary
 with keys 'order_details' (list of selected dishes with details)
@@ -200,10 +193,10 @@ and 'total' (grand total price).
 """
 def test_generate_receipt():
     order = Order()
-    dish_1 = Dish('Pizza' '12.50')
-    dish_2 = Dish('Lasagne' '10.90')
-    self.order_list.add(dish_1, 1)
-    self.order_list.add(dish_2, 2)
+    dish_1 = Dish('Pizza', '12.50')
+    dish_2 = Dish('Lasagne', '10.90')
+    order.order_list.add(dish_1, 1)
+    order.order_list.add(dish_2, 2)
     assert order.generate_receipt() == {
     'order_details': [
         {'dish_name': 'Pizza', 'quantity': '1', 'price': '12.50'},
