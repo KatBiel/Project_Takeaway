@@ -65,7 +65,7 @@ class Menu:
         # Returns nothing
         pass 
 
-    def list_of_all_dishes(self):
+    def list_all_dishes(self):
         # Returns:
         #   A list of the Dishes instances
         pass 
@@ -119,6 +119,17 @@ class Order():
 #     'total': £34.30
 # }
 
+class TwilioService():
+    def __init__(self):
+        pass
+
+    def send_text_confirmation(self, phone_number, delivery_time):
+        #returns a string function:
+        #   f"Thank you! Your order was placed and will be delivered before {delivery_time}"
+        pass
+
+
+
 ```
 
 ## 3. Create Examples as Integration Tests
@@ -142,7 +153,17 @@ def test_list_of_all_dishes():
     self.dishes.add(dish_1)
     self.dishes.add(dish_2)
     self.dishes.add(dish_2)
-    assert menu.list_of_all_dishes() == [dish_1, dish_2, dish_3]
+    assert menu.list_all_dishes() == [dish_1, dish_2, dish_3]
+
+"""
+class Order: Test initialiser for Order class
+"""
+def test_order_initializer():
+    menu = Menu() 
+    order = Order(menu)
+    assert order.menu == menu
+    assert order.order_list == []
+
 
 """
 class Order: When added multiple dishes to order list, all_selected() returns list of dictionaries with keys 'dish_name', 'quantity', and 'price'.
@@ -164,9 +185,8 @@ def test_add_non_existing_dish():
     error_message = str(e.value)
     assert error_ message == 'Dish not available!'
 
-"""
-class Order: When adding empty sting raises an error
-"""
+
+
 def test_add_non_existing_dish():
     with pytest.rasises(Exception) as e:
         order.add('')
@@ -191,7 +211,6 @@ def test_generate_receipt():
     ],
     'total': £34.30
 }
-
 ```
 
 ## 4. Create Examples as Unit Tests
@@ -202,12 +221,31 @@ a more granular level of detail._
 ```python
 # EXAMPLE
 
+# class Menu:
 """
-Given a track with a title and an artist
-We see the title reflected in the title property
+Initialy returns an empty list
 """
-track = Track("Carte Blanche", "Veracocha")
-track.title # => "Carte Blanche"
+def test_initially_empty_list():
+    menu = Menu()
+    assert menu.list_all_dishes() == []
+
+# class Dish:
+"""
+Test creator
+"""
+def test_initializer():
+    dish = Dish('Pizza' '12.50')
+    assert self.name == 'Pizza'
+    assert self.price == '12.50'
+
+# class Order()
+"""
+Initially returns an empty list
+"""
+def test_initially_an_empty_list():
+    order = Order()
+    assert order.order_list == []
+
 ```
 
 _Encode each example as a test. You can add to the above list as you go._
