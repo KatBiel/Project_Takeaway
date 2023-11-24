@@ -49,44 +49,62 @@ _Also design the interface of each class in more detail._
 ```python
 class Menu:
     # User-facing properties:
-    #   tracks: list of instances of Track
+    #   dishes: list of instances of Dishes
 
     def __init__(self):
-        #
+        # side effect: initialises an empty list
+        # returns: nothing
+        # self.dishes = []
         pass 
 
-    def add(self, track):
+    def add(self, dish):
         # Parameters:
-        #   track: an instance of Track
+        #   dish: an instance of Dishes
         # Side-effects:
-        #   Adds the track to the tracks property of the self object
-        pass # No code here yet
+        #   Adds the dish to the dishes property of the self object
+        # Returns nothing
+        pass 
 
-    def search_by_title(self, keyword):
-        # Parameters:
-        #   keyword: string
+    def all_list_of_dishes(self):
         # Returns:
-        #   A list of the Track objects that have titles that include the keyword
-        pass # No code here yet
+        #   A list of the Dishes instances
+        pass 
 
 
-class Track:
-    # User-facing properties:
-    #   title: string
-    #   artist: string
+class Dishes():
+    # User-facin (Public) properties:
+    #   name: string representing a name of a dish
+    #   price: a float representing the price of a dish
 
-    def __init__(self, title, artist):
+    def __init__(self, name, price):
         # Parameters:
-        #   title: string
-        #   artist: string
+        #   name: string
+        #   price: float
         # Side-effects:
-        #   Sets the title and artist properties
-        pass # No code here yet
+        #   Sets the above (name and price) properties
+        pass 
 
-    def format(self):
-        # Returns:
-        #   A string of the form "TITLE by ARTIST"
-        pass # No code here yet
+class Order():
+    def __init__(self, menu):
+        # side effect: initialises an empty list
+        # returns: nothing
+        # 
+        # selected_dishes = []
+
+    def add(self, dish_name, quantity):
+        # dish_name: string, an instance of Dishes, 
+        #    representing a dish selected by the user
+        # quantity: int representing a number of dishes selected
+
+    def generate_receipt(self):
+        # returns:
+        # a list of selected dish_names with selected quantity and price (quantity * price)
+        # a grand total:
+        # Total = a float, representing a sum of all dishes prices 
+        # a string:
+        #'Order Total': n£
+
+
 
 ```
 
