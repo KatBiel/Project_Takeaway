@@ -1,23 +1,27 @@
 class Order():
     def __init__(self, menu):
-        # side effect: initialises an empty list
-        # menu: a string, an instance of Menu
-        # returns: nothing
-        # self.menu = menu
-        # self.order_list = []
-        pass
+        self.menu = menu
+        self.order_list = []
 
     def add(self, dish, quantity):
-        # dish: string, an instance of Dish, 
-        #    representing a dish name selected by the user
-        # quantity: int representing a number of dishes selected
+        dish_name = dish.name
+        item_found = False
+        for menu_dish in self.menu.dishes:
+            if menu_dish.name == dish_name:
+                item_found = True
+            else: 
+                raise Exception(f"Dish not available")
+
+        # self.order_list.append((dish, quantity))
+        price = float(dish.price)
+        self.order_list.append({'dish': dish, 'quantity': quantity, 'price': price * quantity} )
+
+
         # Consider adding validation to check whether the provided dish name exists in the menu before adding it to the order.
         #Raises: ValueError if the provided dish name does not exist in the menu.
-        pass
 
     def all_selected(self):
-        #returns: A list of dictionaries with keys 'dish_name', 'quantity', and 'price'.
-        pass
+        return self.order_list
 
     def generate_receipt(self):
         #returns:

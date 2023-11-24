@@ -147,12 +147,12 @@ class Menu: When we add multiple dishes entries, list_of_all_dishes lists them o
 """
 def test_list_of_all_dishes():
     menu = Menu()
-    dish_1 = Dish('Pizza' '12.50')
-    dish_2 = Dish('Lasagne' '10.90')
-    dish_3 = Dish('Spaghetti' '9.50')
-    menu.dishes.add(dish_1)
-    menu.dishes.add(dish_2)
-    smenu.dishes.add(dish_2)
+    dish_1 = Dish('Pizza', '12.50')
+    dish_2 = Dish('Lasagne', '10.90')
+    dish_3 = Dish('Spaghetti', '9.50')
+    menu.add(dish_1)
+    menu.add(dish_2)
+    smenu.add(dish_3)
     assert menu.list_all_dishes() == [dish_1, dish_2, dish_3]
 
 """
@@ -170,11 +170,11 @@ class Order: When added multiple dishes to order list, all_selected() returns li
 """
 def test_order_list():
     order = Order()
-    dish_1 = Dish('Pizza' '12.50')
-    dish_2 = Dish('Lasagne' '10.90')
-    self.order_list.add(dish_1, 1)
-    self.order_list.add(dish_2, 2)
-    assert order.order_list() == [(dish_1, 1), (dish_2, 2)]
+    dish_1 = Dish('Pizza', '12.50')
+    dish_2 = Dish('Lasagne', '10.90')
+    order.add(dish_1, 1)
+    order.add(dish_2, 2)
+    assert order.all_selected() == [(dish_1, 1), (dish_2, 2)]
 
 """
 class Order: When adding dish that does not exist, raises an error
@@ -187,7 +187,7 @@ def test_add_non_existing_dish():
 
 
 
-def test_add_non_existing_dish():
+def test_add_empty_entry():
     with pytest.rasises(Exception) as e:
         order.add('')
     error_message = str(e.value)

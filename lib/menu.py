@@ -6,14 +6,7 @@ class Menu():
         self.dishes = []
 
     def add(self, dish):
-        # Parameters:
-        #   dish: an instance of Dish
-        # Side-effects:
-        #   Adds the dish to the dishes property of the self object
-        # Returns nothing
-        pass 
+        self.dishes.append(dish)
 
     def list_all_dishes(self):
-        # Returns:
-        #   A list of the Dishes instances
-        pass 
+        return self.dishes
