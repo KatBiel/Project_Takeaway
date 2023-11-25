@@ -1,7 +1,11 @@
+from twilio.rest import Client
+from datetime import datetime, timedelta
+
 class Order():
-    def __init__(self, menu):
+    def __init__(self, menu, twilio_serive=None):
         self.menu = menu
         self.order_list = []
+        self.twilio_service = twilio_serive
 
     def add(self, dish, quantity):
         price = float(dish.price)
@@ -15,13 +19,12 @@ class Order():
             raise Exception("Dish not available")
             
         self.order_list.append({'dish': dish, 'quantity': quantity} )
-        # self.order_list.append((dish, quantity))
 
 
     def all_selected(self):
         return self.order_list
 
-    def generate_receipt(self):
+    def generate_receipt(self, customer_phone=None):
         receipt_lines = []
         for item in self.order_list:
             dish_name = item['dish'].name
@@ -39,5 +42,12 @@ class Order():
             item_cost = price * quantity
             total += item_cost
         total_line = f"\n\nTotal: £{total:.2f}"
+        receipt = f'{joined_receipt_lines}{total_line}'
         
-        return f'{joined_receipt_lines}{total_line}'
+        if self.twilio_service and customer_phone:
+            self.twilio_service.send_confirmation(customer_phone)
+
+        return receipt
+        
+        
+        

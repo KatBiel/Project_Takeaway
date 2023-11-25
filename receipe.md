@@ -227,16 +227,18 @@ def test_initially_empty_list():
 Test creator
 """
 def test_initializer():
-    dish = Dish('Pizza' '12.50')
-    assert self.name == 'Pizza'
-    assert self.price == '12.50'
+    dish = Dish('Pizza', '12.50')
+    assert dish.name == 'Pizza'
+    assert dish.price == '12.50'
 
-# class Order()
+# class Order:
 """
-Initially returns an empty list
+Test creator
 """
-def test_initially_an_empty_list():
-    order = Order()
+def test_order_initializer():
+    menu = Mock()
+    order = Order(menu)
+    assert order.menu == menu
     assert order.order_list == []
 
 ```
